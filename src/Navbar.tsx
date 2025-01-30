@@ -12,7 +12,7 @@ const Navbar = () => {
           {/* Logo aligned to the leftmost side */}
           <div className="flex items-center flex-shrink-0">
             <img src={feather} className='h-10' alt="feather logo"/>
-            <span className='ml-1'>Day One</span>
+            <span className='ml-1'>DayOne</span>
           </div>
           
           {/* Mobile menu button */}

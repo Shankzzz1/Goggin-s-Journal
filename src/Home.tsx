@@ -7,12 +7,13 @@ import Img7 from "./Images/Img-7.jpeg";
 import Img4 from "./Images/Img-4.jpeg";
 import Img5 from "./Images/Img-5.jpeg";
 import Img6 from "./Images/Img-6.jpeg";
+import Footer from "./Footer";
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <div className="pt-16">
+      <div className="pt-12">
         {/* Hero Section */}
         <div className="flex items-center justify-center min-h-screen text-center font-mono">
           <div>
@@ -234,9 +235,9 @@ export default function Home() {
 
         {/* Additional Features Section */}
         <div className="max-w-7xl mx-auto px-4 mt-28 py-16 font-mono">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8  ">
             {/* Print Your Journals */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <div className=" p-6 rounded-lg shadow-md bg-blue-100">
               <h3 className="text-xl font-bold mb-4 text-center">
                 Print Your Journals Into Beautiful eBooks
               </h3>
@@ -256,7 +257,7 @@ export default function Home() {
             </div>
 
             {/* Export Your Journal */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <div className=" p-6 rounded-lg shadow-md bg-blue-100">
               <h3 className="text-xl font-bold mb-4 text-center">
                 Export Your Journal to ePUB & Docx
               </h3>
@@ -276,7 +277,7 @@ export default function Home() {
             </div>
 
             {/* Self-Host Your Journal */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <div className="p-6 rounded-lg shadow-md bg-blue-100">
               <h3 className="text-xl font-bold mb-4 text-center">
                 Self-Host Your Journal
               </h3>
@@ -296,7 +297,7 @@ export default function Home() {
             </div>
 
             {/* Legacy Backup */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <div className=" p-6 rounded-lg shadow-md bg-blue-100">
               <h3 className="text-xl font-bold mb-4 text-center">
                 Legacy Backup
               </h3>
@@ -312,6 +313,9 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+        <div>
+          <Footer/>
         </div>
       </div>
     </>
