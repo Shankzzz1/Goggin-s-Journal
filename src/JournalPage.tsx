@@ -6,7 +6,9 @@ import { GiFeather } from "react-icons/gi";
 import { TbLogout2 } from "react-icons/tb";
 import { IoSettings } from "react-icons/io5";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
-import { FaSearch } from "react-icons/fa";  
+import { FaSearch, FaBold, FaItalic, FaStrikethrough, FaList, FaPalette } from "react-icons/fa";
+import { BsListTask, BsListOl, BsListUl } from "react-icons/bs";
+import { MdInsertPhoto } from "react-icons/md";
 
 function JournalPage() {
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -22,6 +24,7 @@ function JournalPage() {
   const [selectedJournal, setSelectedJournal] = useState(journals[0]);
   const [newJournalName, setNewJournalName] = useState("");
   const [showAddJournal, setShowAddJournal] = useState(false);
+  const [showListOptions, setShowListOptions] = useState(false);
   const [journalEntries, setJournalEntries] = useState(() => {
     const savedEntries = localStorage.getItem("journalEntries");
     return savedEntries ? JSON.parse(savedEntries) : {};
@@ -169,7 +172,7 @@ function JournalPage() {
           {/* Primary Text Editor */}
           <div className="flex-[3] relative">
             <textarea
-              className={`w-full h-full p-4 border rounded
+              className={`w-full h-full p-4 border rounded resize-none
                 ${isDarkMode
                   ? "bg-slate-800 text-white placeholder-slate-400 border-slate-700 focus:border-slate-500"
                   : "bg-white text-black placeholder-gray-500 border-gray-300 focus:border-gray-500"
@@ -178,6 +181,9 @@ function JournalPage() {
               onChange={(e) => updateJournalEntry(e.target.value)}
               placeholder={`Start writing in ${selectedJournal}...`}
             />
+
+            {/* Format Toolbar */}
+            
             <button
               onClick={() => setShowAddJournal(true)}
               className="absolute bottom-4 right-4 transform transition-transform hover:scale-110"
@@ -189,7 +195,7 @@ function JournalPage() {
           {/* Secondary Text Editor */}
           <div className="flex-[1]">
             <textarea
-              className={`w-full h-full p-4 border rounded
+              className={`w-full h-full p-4 border rounded resize-none
                 ${isDarkMode
                   ? "bg-slate-800 text-white placeholder-slate-400 border-slate-700 focus:border-slate-500"
                   : "bg-white text-black placeholder-gray-500 border-gray-300 focus:border-gray-500"
@@ -198,8 +204,107 @@ function JournalPage() {
               onChange={(e) => updateSecondaryEntry(e.target.value)}
               placeholder={`Additional notes for ${selectedJournal}...`}
             />
+            
           </div>
+          
         </div>
+        <div
+              className={`relative top-3 flex items-center justify-between p-2 rounded-lg ${
+                isDarkMode 
+                  ? "bg-slate-700 border border-slate-600" 
+                  : "bg-white border border-gray-300"
+              } shadow-lg`}
+            >
+              {/* Left Section */}
+              <div className="flex items-center space-x-1">
+                <button
+                  className={`p-2 rounded-md hover:${
+                    isDarkMode ? "bg-slate-600" : "bg-gray-100"
+                  } transition-colors duration-200`}
+                  title="Insert Image"
+                >
+                  <MdInsertPhoto size={20} />
+                </button>
+                <div className={`h-6 w-px mx-1 ${isDarkMode ? "bg-slate-600" : "bg-gray-300"}`} />
+                <button
+                  className={`p-2 rounded-md hover:${
+                    isDarkMode ? "bg-slate-600" : "bg-gray-100"
+                  } transition-colors duration-200`}
+                  title="Bold"
+                >
+                  <FaBold size={20} />
+                </button>
+                <button
+                  className={`p-2 rounded-md hover:${
+                    isDarkMode ? "bg-slate-600" : "bg-gray-100"
+                  } transition-colors duration-200`}
+                  title="Italic"
+                >
+                  <FaItalic size={20} />
+                </button>
+                <button
+                  className={`p-2 rounded-md hover:${
+                    isDarkMode ? "bg-slate-600" : "bg-gray-100"
+                  } transition-colors duration-200`}
+                  title="Strikethrough"
+                >
+                  <FaStrikethrough size={20} />
+                </button>
+                <div className={`h-6 w-px mx-1 ${isDarkMode ? "bg-slate-600" : "bg-gray-300"}`} />
+                <button
+                  className={`p-2 rounded-md hover:${
+                    isDarkMode ? "bg-slate-600" : "bg-gray-100"
+                  } transition-colors duration-200`}
+                  title="Text Color"
+                >
+                  <FaPalette size={20} />
+                </button>
+              </div>
+
+              {/* Right Section - List Options */}
+              <div className="relative">
+                <button
+                  onClick={() => setShowListOptions(!showListOptions)}
+                  className={`p-2 rounded-md hover:${
+                    isDarkMode ? "bg-slate-600" : "bg-gray-100"
+                  } transition-colors duration-200 flex items-center space-x-1`}
+                  title="Lists"
+                >
+                  <FaList size={20} />
+                </button>
+
+                {showListOptions && (
+                  <div
+                    className={`absolute bottom-full right-0 mb-2 w-48 rounded-lg shadow-lg ${
+                      isDarkMode ? "bg-slate-700 border-slate-600" : "bg-white border-gray-200"
+                    } border overflow-hidden`}
+                  >
+                    <button
+                      className={`w-full flex items-center px-4 py-3 hover:${
+                        isDarkMode ? "bg-slate-600" : "bg-gray-100"
+                      } transition-colors duration-200`}
+                    >
+                      <BsListUl className="mr-3" /> Unordered List
+                    </button>
+                    <button
+                      className={`w-full flex items-center px-4 py-3 hover:${
+                        isDarkMode ? "bg-slate-600" : "bg-gray-100"
+                      } transition-colors duration-200`}
+                    >
+                      <BsListOl className="mr-3" /> Ordered List
+                    </button>
+                    <button
+                      className={`w-full flex items-center px-4 py-3 hover:${
+                        isDarkMode ? "bg-slate-600" : "bg-gray-100"
+                      } transition-colors duration-200`}
+                    >
+                      <BsListTask className="mr-3" /> Task List
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+
       </div>
 
       {/* Add Journal Modal */}

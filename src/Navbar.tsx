@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import feather from "./Images/feather.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
   const menuItems = ['Home', 'About', 'Services', 'Contact'];
 
   return (
@@ -59,8 +61,11 @@ const Navbar = () => {
 
           {/* Sign Up Button aligned to the rightmost side */}
           <div className="hidden md:flex items-center ml-auto">
-            <button className="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700">
-              Sign Up
+            <button 
+              className="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700"
+              onClick={() => navigate("/journal")}
+            >
+              Create Journal
             </button>
           </div>
         </div>
@@ -68,8 +73,11 @@ const Navbar = () => {
         {/* Mobile Sign Up Button */}
         {isOpen && (
           <div className="md:hidden py-4 bg-white border-t border-gray-100">
-            <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700">
-              Sign Up
+            <button 
+              className="w-full bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700"
+              onClick={() => navigate("/journal")}
+            >
+              Create Journal
             </button>
           </div>
         )}

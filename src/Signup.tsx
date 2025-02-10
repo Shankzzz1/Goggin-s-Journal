@@ -1,11 +1,12 @@
 import { BsArrowRightSquareFill } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import feather from "./Images/feather.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -26,6 +27,7 @@ const Signup = () => {
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/signup/", formData);
       alert(response.data.message);
+      navigate("/"); // Redirect to Home after successful signup
     } catch (error: any) {
       console.error(error);
       alert(error.response?.data?.error || "An error occurred");

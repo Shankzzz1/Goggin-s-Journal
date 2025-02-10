@@ -16,7 +16,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/journal" element={<JournalPage/>} />
         <Route path="/calendarc" element={<Calendarc/>} />
         <Route path="/textImage" element={<Textimage/>}/>
-        <Route path="/Home" element={<Home/>}/>
+        <Route path="/" element={<Home/>}/>
       </Routes>
     </Router>
   );
