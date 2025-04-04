@@ -5,7 +5,11 @@ import feather from "./Images/feather.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const menuItems = ['Home', 'About', 'Services', 'Contact'];
+  const menuItems = [
+    { name: 'Home', path: '/' },
+    { name: 'Service', path: '/service ' },
+    { name: 'Contact', path: '/contact' }
+  ];
 
   return (
     <nav className="bg-white shadow-lg w-full font-mono fixed top-0 z-50">
@@ -31,13 +35,13 @@ const Navbar = () => {
           <div className="hidden md:flex-1 md:flex md:justify-center">
             <div className="flex flex-row space-x-8 items-center">
               {menuItems.map((item) => (
-                <a
-                  key={item}
-                  href="#"
+                <button
+                  key={item.name}
+                  onClick={() => navigate(item.path)}
                   className="text-black hover:text-blue-600 px-3 py-2 text-sm font-medium"
                 >
-                  {item}
-                </a>
+                  {item.name}
+                </button>
               ))}
             </div>
           </div>
@@ -47,13 +51,16 @@ const Navbar = () => {
             <div className="md:hidden absolute left-0 right-0 top-16 bg-white border-b border-gray-200 shadow-lg">
               <div className="flex flex-col">
                 {menuItems.map((item) => (
-                  <a
-                    key={item}
-                    href="#"
+                  <button
+                    key={item.name}
+                    onClick={() => {
+                      navigate(item.path);
+                      setIsOpen(false);
+                    }}
                     className="text-black hover:text-blue-600 px-3 py-4 text-sm font-medium text-center border-b border-gray-100"
                   >
-                    {item}
-                  </a>
+                    {item.name}
+                  </button>
                 ))}
               </div>
             </div>
@@ -75,7 +82,10 @@ const Navbar = () => {
           <div className="md:hidden py-4 bg-white border-t border-gray-100">
             <button 
               className="w-full bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700"
-              onClick={() => navigate("/journal")}
+              onClick={() => {
+                navigate("/journal");
+                setIsOpen(false);
+              }}
             >
               Create Journal
             </button>
